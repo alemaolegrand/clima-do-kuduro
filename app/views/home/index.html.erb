@@ -1,0 +1,40 @@
+<div class="flex flex-col w-screen h-auto justify-center items-center">
+  <div class="font-bold"><%= Date.today.strftime("%A, %B %d") %></div>
+
+  <div class="flex flex-col justify-center items-center">
+    <div>
+      <img src="http://openweathermap.org/img/wn/<%= @data["weather"].first["icon"]%>@2x.png" />
+    </div>
+
+    <div class="flex flex-row font-bold text-6xl">
+      <%= @data["main"]["temp"] %> <p class="text-sm">°C</p>
+    </div>
+ 
+    <div class=""> <%# .first > posição do item na Array da API | "weather":[{"id":803,"main":"Clouds"...}] %>
+      <%= @data["weather"].first["description"] %> <%# < chave dentro do item da Array | "description":"broken clouds"| %>
+    </div>
+     
+    <div class="">
+      <%= @data["name"] %> - <%# nome da cidade na API | "name":"Bairro Vista Alegre" %>
+      <%= @data["sys"]["country"] %>
+    </div>
+  </div>
+
+</div>
+
+<%# JSON da API
+{"coord":{"lon":-43.778,"lat":-22.8631},
+"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04n"}],
+"base":"stations",
+"main":{"temp":18.91,
+  "feels_like":18.87,
+  "temp_min":18.91,"temp_max":18.91,
+  "pressure":1020,"humidity":77,
+  "sea_level":1020,"grnd_level":1018},
+"visibility":10000,
+"wind":{"speed":1.61,"deg":340,"gust":1.58},
+"clouds":{"all":74},
+"dt":1658721791,
+"sys":{"country":"BR","sunrise":1658741534,"sunset":1658781044},
+"timezone":-10800,"id":7537374,"name":"Bairro Vista Alegre","cod":200}
+%>
